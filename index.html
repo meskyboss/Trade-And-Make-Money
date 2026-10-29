@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn crypto trading, understand charts, and build better trading habits with Coach Debbie.">
+  <meta name="theme-color" content="#080a10">
+  <title>Coach Debbie | Crypto Trading Academy</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #080a10;
+      --card: #11141e;
+      --text: #f5f7ff;
+      --muted: #a2a8ba;
+      --blue: #6978ff;
+      --purple: #a45cff;
+      --green: #25d366;
+      --border: #252938;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1120px, 90%); margin-inline: auto; }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 0;
+    }
+    .logo {
+      font: 700 23px "Space Grotesk", sans-serif;
+      letter-spacing: -1px;
+      white-space: nowrap;
+    }
+    .logo span { color: var(--blue); }
+    .nav-link { color: var(--muted); font-size: 14px; }
+    .nav-link:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 23px;
+      border: 0;
+      border-radius: 10px;
+      background: linear-gradient(110deg, var(--blue), var(--purple));
+      color: #fff;
+      font: 700 14px "DM Sans", sans-serif;
+      text-align: center;
+      cursor: pointer;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .btn:hover { transform: translateY(-3px); opacity: .93; }
+    .btn:focus-visible, a:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+    .btn-green { background: var(--green); color: #07150b; }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 55px;
+      padding: 95px 0 110px;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 380px;
+      height: 380px;
+      left: 10%;
+      top: 5%;
+      background: #5149ff;
+      filter: blur(180px);
+      opacity: .18;
+      pointer-events: none;
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 12px;
+      border: 1px solid #333451;
+      border-radius: 30px;
+      color: #b9bfff;
+      font-size: 12px;
+      margin-bottom: 22px;
+    }
+    h1, h2, h3 {
+      font-family: "Space Grotesk", sans-serif;
+      line-height: 1.12;
+      letter-spacing: -1.2px;
+    }
+    h1 { font-size: clamp(40px, 5.5vw, 67px); }
+    .gradient-text {
+      background: linear-gradient(100deg, #8791ff, #c68cff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-copy {
+      color: var(--muted);
+      max-width: 490px;
+      margin: 24px 0 30px;
+      font-size: 16px;
+    }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+    .note { color: var(--muted); font-size: 12px; margin-top: 16px; }
+
+    .image-frame {
+      min-height: 390px;
+      border: 1px dashed #54577a;
+      border-radius: 22px;
+      background:
+        radial-gradient(ellipse at 50% 30%, #34347766, transparent 60%),
+        linear-gradient(145deg, #171a2b, #0d0f18);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 25px;
+      color: #b8bdd4;
+      overflow: hidden;
+    }
+    .image-frame img {
+      width: 100%;
+      height: 100%;
+      max-height: 470px;
+      object-fit: cover;
+      border-radius: 16px;
+    }
+    .image-frame .symbol { font-size: 42px; margin-bottom: 12px; }
+    .image-frame small { color: #9299b5; margin-top: 7px; }
+
+    section { padding: 85px 0; }
+    .section-heading {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 45px;
+    }
+    .section-heading h2 { font-size: clamp(30px, 4vw, 44px); }
+    .section-heading p { color: var(--muted); margin-top: 15px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 28px;
+      border-radius: 16px;
+      transition: border-color .2s, transform .2s;
+    }
+    .card:hover { border-color: #7775ff; transform: translateY(-4px); }
+    .card-icon { font-size: 28px; margin-bottom: 18px; }
+    .card h3 { font-size: 20px; margin-bottom: 12px; letter-spacing: -.5px; }
+    .card p { color: var(--muted); font-size: 14px; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 55px;
+    }
+    .about-grid h2 { font-size: clamp(32px, 4vw, 46px); margin-bottom: 20px; }
+    .about-grid p { color: var(--muted); margin-bottom: 20px; }
+    .checklist { list-style: none; margin: 25px 0; }
+    .checklist li { margin: 12px 0; color: #dfe2f0; }
+    .checklist li::before { content: "✓"; color: #8f91ff; margin-right: 12px; }
+    .proof-placeholder {
+      min-height: 270px;
+      border: 1px dashed #54577a;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 25px;
+      color: #a7aec8;
+      background: #10131d;
+      overflow: hidden;
+    }
+    .proof-placeholder img {
+      width: 100%;
+      height: 100%;
+      max-height: 360px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+    .testimonial-image { min-height: 220px; padding: 12px; }
+    .testimonial-image img { width: 100%; height: 100%; min-height: 220px; object-fit: contain; }
+
+    .cta-section { padding: 60px 0 100px; }
+    .cta-box {
+      text-align: center;
+      padding: 65px 25px;
+      border: 1px solid #37365d;
+      border-radius: 24px;
+      background:
+        radial-gradient(ellipse at top, #5347a733, transparent 65%),
+        #11131f;
+    }
+    .cta-box h2 { font-size: clamp(32px, 4vw, 48px); }
+    .cta-box p { color: var(--muted); margin: 18px auto 28px; max-width: 530px; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+    .floating-whatsapp {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 10;
+      background: var(--green);
+      color: #07150b;
+      border-radius: 50px;
+      padding: 14px 18px;
+      font-weight: 700;
+      box-shadow: 0 5px 30px #0008;
+      transition: transform .2s ease;
+    }
+    .floating-whatsapp:hover { transform: translateY(-3px); }
+
+    @media (max-width: 760px) {
+      .navbar { flex-wrap: wrap; }
+      .nav-link { display: none; }
+      .navbar .btn { padding: 11px 14px; font-size: 12px; }
+      .hero { grid-template-columns: 1fr; padding: 65px 0 70px; gap: 35px; }
+      .image-frame { min-height: 300px; }
+      section { padding: 65px 0; }
+      .cards { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 30px; }
+      .floating-whatsapp { right: 12px; bottom: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="container navbar">
+    <a href="#" class="logo" aria-label="Coach Debbie home">COACH<span>DEBBIE.</span></a>
+    <a href="#learn" class="nav-link">What you'll learn</a>
+    <a href="#about" class="nav-link">About the coach</a>
+    <a href="https://wa.me/2348101047042" class="btn" target="_blank" rel="noopener noreferrer">
+      Join on WhatsApp ↗
+    </a>
+  </header>
+
+  <main>
+    <section class="container hero" aria-labelledby="hero-title">
+      <div>
+        <span class="eyebrow">YOUR CRYPTO TRADING JOURNEY STARTS HERE</span>
+        <h1 id="hero-title">Start Earning <br><span class="gradient-text">$500 Per Week</span> With Smarter Market Decisions.</h1>
+        <p class="hero-copy">
+          Learn how crypto trading works, read price charts, manage risk,
+          and make more informed trading decisions with Coach Debbie. 
+          All with just your smartphone from the comfort of your home.
+        </p>
+        <div class="hero-buttons">
+          <a href="https://wa.me/2348101047042?text=Hello%20Coach%20Debbie%2C%20I%27m%20interested%20in%20your%20crypto%20trading%20class." class="btn btn-green" target="_blank" rel="noopener noreferrer">
+            Join Our WhatsApp Class ↗
+          </a>
+          <a href="#learn" class="btn">Explore the Course ↓</a>
+        </div>
+        <p class="note">Education first. Real skills take practice. Trading involves risk.</p>
+      </div>
+
+      <!-- MAIN IMAGE: save your image in this folder as image21.png -->
+      <div class="image-frame">
+        <img src="tt111.jpg" alt="A big win" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
+        <div hidden>
+          <div class="symbol">✦</div>
+          <strong>ADD YOUR MAIN PHOTO</strong>
+          <small>Place image21.png beside index.html</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="learn">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">INSIDE THE CLASS</span>
+          <h2>Learn the skills behind <span class="gradient-text">the charts.</span></h2>
+          <p>A structured introduction to trading, from the basics to building a more disciplined approach.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">📊</div>
+            <h3>Read the Charts</h3>
+            <p>Understand candlesticks, market structure, support, resistance, and price action.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🎯</div>
+            <h3>Trading Strategies</h3>
+            <p>Explore entry setups, trade planning, and how to approach different market conditions.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🛡️</div>
+            <h3>Risk Management</h3>
+            <p>Learn about position sizing, stop losses, and protecting your capital.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">₿</div>
+            <h3>Crypto Fundamentals</h3>
+            <p>Understand spot trading, futures, leverage, and the risks that come with each.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🧠</div>
+            <h3>Trading Psychology</h3>
+            <p>Recognize FOMO, revenge trading, and emotional decisions that can hurt your results.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">📱</div>
+            <h3>Practical Guidance</h3>
+            <p>Get familiar with the tools, routines, and preparation involved in analyzing trades.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <div>
+          <span class="eyebrow">MEET YOUR COACH</span>
+          <h2>Learn from someone who understands the <span class="gradient-text">journey.</span></h2>
+          <p>
+            My trading journey wasn't easy. I started out confused, made costly mistakes, 
+            and spent countless hours trying to understand the charts. 
+            Like many beginners, I thought trading was a quick way to make money, but reality hit differently. 
+            I had to learn the hard way that success takes more than just finding entries 
+             it takes patience, discipline, and proper risk management.
+          </p>
+          <p>
+            This class is about learning the fundamentals, building discipline,
+            and understanding the risks before putting your money on the line.
+          </p>
+          <ul class="checklist">
+            <li>Beginner-friendly explanations</li>
+            <li>Practical lessons and examples</li>
+            <li>Focus on risk awareness and discipline</li>
+          </ul>
+          <a href="https://wa.me/2348101047042?text=Hello%20Coach%20Debbie%2C%20I%27d%20like%20to%20know%20more%20about%20your%20trading%20class." class="btn btn-green" target="_blank" rel="noopener noreferrer">
+            Talk to Coach Debbie ↗
+          </a>
+        </div>
+
+        <!-- COACH / PROOF IMAGE: save photo1111.jpg beside index.html -->
+        <div class="proof-placeholder">
+          <img src="image21.png" alt="Coach Debbie and trading education" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
+          <div hidden>
+            <strong>ADD A COACH OR TRADING IMAGE</strong>
+            <p style="margin-top:8px;font-size:13px;">Place photo1111.jpg beside index.html</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">REAL PEOPLE. REAL FEEDBACK.</span>
+          <h2>Let your students <span class="gradient-text">speak.</span></h2>
+          <p>Use genuine feedback from people who have taken your class.</p>
+        </div>
+        <div class="cards">
+          <div class="proof-placeholder testimonial-image">
+            <img src="tt333.jpg" alt="Student testimonial 1" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
+            
+          </div>
+          <div class="proof-placeholder testimonial-image">
+            <img src="tt222.jpg" alt="Student testimonial 2" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
+           
+          </div>
+          <div class="proof-placeholder testimonial-image">
+            <img src="tt666.jpg" alt="Student testimonial 3" onerror="this.hidden=true; this.nextElementSibling.hidden=false">
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" id="join">
+      <div class="container">
+        <div class="cta-box">
+          <span class="eyebrow">YOUR NEXT STEP</span>
+          <h2>Ready to understand <span class="gradient-text">crypto trading?</span></h2>
+          <p>
+            Message us on WhatsApp to learn about the class, available sessions,
+            pricing, and how to get started.
+          </p>
+          <a href="https://wa.me/2348101047042?text=Hello%20Coach%20Debbie%2C%20I%27m%20interested%20in%20your%20crypto%20trading%20course." class="btn btn-green" target="_blank" rel="noopener noreferrer">
+            Message Us on WhatsApp ↗
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year">2026</span> Coach Debbie. All rights reserved.
+      <p style="margin-top:8px;">
+        Educational content only. Cryptocurrency trading carries a risk of loss.
+        No profits or returns are guaranteed.
+      </p>
+    </div>
+  </footer>
+
+  <a class="floating-whatsapp"
+     href="https://wa.me/2348101047042?text=Hello%2C%20I%27m%20interested%20in%20your%20crypto%20course."
+     target="_blank" rel="noopener noreferrer" aria-label="Contact Coach Debbie on WhatsApp">
+    WhatsApp ↗
+  </a>
+
+  <script>
+    // Keep the copyright year current.
+    document.getElementById("2026").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
